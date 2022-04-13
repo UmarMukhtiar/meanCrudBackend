@@ -50,10 +50,16 @@ router.put("/", (req, res) => {
       country.capital = req.body.capital;
       country.save((err, country) => {
         if (err) {
-          res.status(500).json({ errmsg: err });
+          res
+            .status(500)
+            .setHeader("Access-Control-Allow-Origin", "*")
+            .json({ errmsg: err });
           return;
         } else {
-          res.status(200).json({ msg: country });
+          res
+            .status(200)
+            .setHeader("Access-Control-Allow-Origin", "*")
+            .json({ msg: country });
         }
       });
     }
